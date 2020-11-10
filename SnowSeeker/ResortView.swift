@@ -17,18 +17,29 @@ struct ResortView: View {
 	var body: some View {
 		ScrollView {
 			VStack(alignment: .leading, spacing: 0) {
-				Image(decorative: resort.id)
-					.resizable()
-					.scaledToFit()
+				
+				ZStack(alignment: .bottomTrailing) {
+					
+						Image(decorative: resort.id)
+						.resizable()
+						.scaledToFit()
+					
+					Text("Photo: \(resort.imageCredit)")
+						.padding(5)
+						.foregroundColor(.white)
+						.font(.caption)
+						.background(Color.black.opacity(0.5))
+					
+				}
 				
 				Group {
-					
+
 					HStack {
 						if sizeClass == .compact {
-								Spacer()
-								VStack { ResortDetailsView(resort: resort) }
-								VStack { SkiDetailsView(resort: resort) }
-								Spacer()
+							Spacer()
+							VStack { ResortDetailsView(resort: resort) }
+							VStack { SkiDetailsView(resort: resort) }
+							Spacer()
 						} else {
 							ResortDetailsView(resort: resort)
 							Spacer().frame(height: 0)
@@ -44,7 +55,7 @@ struct ResortView: View {
 					
 					Text("Facilities")
 						.font(.headline)
-						
+					
 					HStack {
 						ForEach(resort.facilityTypes) { facility in
 							facility.icon
@@ -57,7 +68,7 @@ struct ResortView: View {
 					.padding(.vertical)
 				}
 				.padding(.horizontal)
-
+				
 				Button(favorites.contains(resort) ? "Remove from Favorites" : "Add to Favorites") {
 					if self.favorites.contains(self.resort) {
 						self.favorites.remove(self.resort)
