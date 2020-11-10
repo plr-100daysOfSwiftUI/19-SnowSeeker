@@ -46,12 +46,19 @@ struct ContentView: View {
 				}
 			}
 			.navigationBarTitle("Resorts")
+			.navigationBarItems(trailing: Button(action: {
+
+			}) {
+				Image(systemName: "arrow.up.arrow.down")
+				Text("Sort")
+			})
 			
 			WelcomeView()
 		}
 		.phoneOnlyStackNavigationView()
 		.environmentObject(favorites)
 	}
+	
 }
 
 struct ContentView_Previews: PreviewProvider {
