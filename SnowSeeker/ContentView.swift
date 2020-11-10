@@ -53,6 +53,9 @@ struct ContentView: View {
 				Image(systemName: "arrow.up.arrow.down")
 				Text("Sort")
 			})
+			.actionSheet(isPresented: $isShowingSorter) {
+				
+			}
 			
 			WelcomeView()
 		}
