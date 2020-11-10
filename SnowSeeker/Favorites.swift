@@ -12,11 +12,15 @@ class Favorites: ObservableObject {
 	private let saveKey = "Favorites"
 	
 	init () {
-		// load our saved data
-		
-		// still here? Use an empty array
 		self.resorts = []
-		
+
+		// load our saved data
+		if let data = UserDefaults.standard.data(forKey: saveKey) {
+			if let decoded = try? JSONDecoder().decode([String].self, from: data) {
+				decoded.forEach { resort in self.resorts.insert(resort) }
+			}
+		}
+				
 	}
 
 	func contains(_ resort: Resort) -> Bool {
