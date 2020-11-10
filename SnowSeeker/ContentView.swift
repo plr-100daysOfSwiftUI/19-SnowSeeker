@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
 	@ObservedObject var favorites = Favorites()
+	@State private var isShowingSorter = false
 	
 	let resorts: [Resort] = Bundle.main.decode("resorts.json")
 	
@@ -47,7 +48,7 @@ struct ContentView: View {
 			}
 			.navigationBarTitle("Resorts")
 			.navigationBarItems(trailing: Button(action: {
-
+				self.isShowingSorter = true
 			}) {
 				Image(systemName: "arrow.up.arrow.down")
 				Text("Sort")
