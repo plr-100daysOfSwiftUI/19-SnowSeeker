@@ -59,7 +59,14 @@ struct ContentView: View {
 				Text("Sort")
 			})
 			.actionSheet(isPresented: $isShowingSorter) {
-				
+				ActionSheet(title: Text("Sort resorts by:"), buttons: [
+					.default(Text("Name")) {
+						self.sortBy = .name
+					},
+					.default(Text("Country")) {
+						self.sortBy = .country
+					}
+				])
 			}
 			
 			WelcomeView()
