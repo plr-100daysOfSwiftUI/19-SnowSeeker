@@ -18,6 +18,17 @@ struct ContentView: View {
 	
 	let resorts: [Resort] = Bundle.main.decode("resorts.json")
 	
+	var sortedResorts: [Resort] {
+		switch sortBy {
+		case .name:
+			return resorts.sorted() { $0.name < $1.name }
+		case .country:
+			return resorts.sorted() { $0.country < $1.country }
+		case .none:
+			return resorts
+		}
+	}
+	
 	var body: some View {
 		NavigationView {
 			List(resorts) { resort in
