@@ -19,6 +19,7 @@ enum FilterType {
 
 struct ResortsView: View {
 	@ObservedObject var favorites = Favorites()
+	@State private var isShowingFilter = false
 	@State private var isShowingSorter = false
 	@State private var sortBy = SortType.none
 	
@@ -70,7 +71,13 @@ struct ResortsView: View {
 				}
 			}
 			.navigationBarTitle("Resorts")
-			.navigationBarItems(trailing: Button(action: {
+			.navigationBarItems(leading: Button(action: {
+				self.isShowingFilter = true
+			}) {
+				Image(systemName: "pin")
+				Text("Filter")
+			},
+				trailing: Button(action: {
 				self.isShowingSorter = true
 			}) {
 				Image(systemName: "arrow.up.arrow.down")
