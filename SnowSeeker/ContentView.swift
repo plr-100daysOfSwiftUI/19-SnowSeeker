@@ -9,7 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
 	var body: some View {
-		ResortsView()
+		
+		TabView {
+			ResortsView()
+				.tabItem {
+					Image(systemName: "lasso")
+					Text("All")
+				}
+			
+			ResortsView()
+				.tabItem {
+					Image.init(systemName: "dollarsign.circle")
+					Text("$$$")
+				}
+		}
+		
 	}
 }
 
