@@ -20,12 +20,12 @@ struct ContentView: View {
 	
 	var sortedResorts: [Resort] {
 		switch sortBy {
+		case .none:
+			return resorts
 		case .name:
 			return resorts.sorted() { $0.name < $1.name }
 		case .country:
 			return resorts.sorted() { $0.country < $1.country }
-		case .none:
-			return resorts
 		}
 	}
 	
