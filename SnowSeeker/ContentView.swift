@@ -31,7 +31,7 @@ struct ContentView: View {
 	
 	var body: some View {
 		NavigationView {
-			List(resorts) { resort in
+			List(sortedResorts) { resort in
 				NavigationLink(
 					destination: ResortView(resort: resort)) {
 					Image(resort.country)
