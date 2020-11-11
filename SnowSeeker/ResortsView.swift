@@ -12,12 +12,18 @@ enum SortType {
 	case none, name, country
 }
 
+
+enum FilterType {
+	case none, price, size, country
+}
+
 struct ResortsView: View {
 	@ObservedObject var favorites = Favorites()
 	@State private var isShowingSorter = false
 	@State private var sortBy = SortType.none
 	
 	let resorts: [Resort] = Bundle.main.decode("resorts.json")
+	let filter: FilterType
 	
 	var sortedResorts: [Resort] {
 		switch sortBy {
@@ -92,6 +98,6 @@ struct ResortsView: View {
 
 struct ResortsView_Previews: PreviewProvider {
     static var previews: some View {
-        ResortsView()
+			ResortsView(filter: .none)
     }
 }

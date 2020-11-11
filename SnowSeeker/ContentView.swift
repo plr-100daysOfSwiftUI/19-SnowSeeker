@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+	
 	var body: some View {
 		
 		TabView {
-			ResortsView()
+			ResortsView(filter: .none)
 				.tabItem {
 					Image(systemName: "lasso")
 					Text("All")
 				}
 			
-			ResortsView()
+			ResortsView(filter: .price)
 				.tabItem {
 					Image.init(systemName: "dollarsign.circle")
 					Text("$$$")
