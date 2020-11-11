@@ -8,13 +8,13 @@
 import SwiftUI
 
 enum SortType {
-	case name, country
+	case none, name, country
 }
 
 struct ContentView: View {
 	@ObservedObject var favorites = Favorites()
 	@State private var isShowingSorter = false
-	@State private var sortBy = SortType.name
+	@State private var sortBy = SortType.none
 	
 	let resorts: [Resort] = Bundle.main.decode("resorts.json")
 	
