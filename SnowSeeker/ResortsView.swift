@@ -12,7 +12,6 @@ enum SortType {
 	case none, name, country
 }
 
-
 enum FilterType {
 	case none, price, size, country
 }
@@ -47,31 +46,59 @@ struct ResortsView: View {
 	let filterType: FilterType
 	
 	var filteredResorts: [Resort] {
-		if filterType == .price {
-			switch priceFilter {
-			case .none:
-				return resorts
-			case .low:
-				return resorts.filter { $0.price == 1 }
-			case .medium:
-				return resorts.filter { $0.price == 2 }
-			case .high:
-				return resorts.filter { $0.price == 3 }
-			}
-		} else if  filterType == .size{
-			switch sizeFilter {
-			case .none:
-				return resorts
-			case .small:
-				return resorts.filter { $0.size == 1 }
-			case .average:
-				return resorts.filter { $0.size == 2 }
-			case .large:
-				return resorts.filter { $0.size == 3 }
-			}
-			
+		switch filterType {
+		case .none:
+			return resorts
+		case .price:
+			return filteredByPrice
+		case .size:
+			return filteredBySize
+		case .country:
+			return filteredByCountry
 		}
-		return resorts
+	}
+	
+	var filteredByPrice: [Resort] {
+		switch priceFilter {
+		case .none:
+			return resorts
+		case .low:
+			return resorts.filter { $0.price == 1 }
+		case .medium:
+			return resorts.filter { $0.price == 2 }
+		case .high:
+			return resorts.filter { $0.price == 3 }
+		}
+	}
+	
+	var filteredBySize: [Resort] {
+		switch sizeFilter {
+		case .none:
+			return resorts
+		case .small:
+			return resorts.filter { $0.size == 1 }
+		case .average:
+			return resorts.filter { $0.size == 2 }
+		case .large:
+			return resorts.filter { $0.size == 3 }
+		}
+	}
+	
+	var filteredByCountry: [Resort] {
+		switch countryFilter {
+		case .none:
+			return resorts
+		case .austria:
+			return resorts.filter { $0.country == "Austria"}
+		case .canada:
+			return resorts.filter { $0.country == "Canada"}
+		case .france:
+			return resorts.filter { $0.country == "France" }
+		case .italy:
+			return resorts.filter { $0.country == "Italy"}
+		case .unitedStates:
+			return resorts.filter { $0.country == "United States"}
+		}
 	}
 	
 	var sortedResorts: [Resort] {
