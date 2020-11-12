@@ -21,11 +21,16 @@ enum PriceFilter {
 	case none, low, medium, high
 }
 
+enum SizeFilter {
+	case none, small, average , large
+}
+
 struct ResortsView: View {
 	@ObservedObject var favorites = Favorites()
 	@State private var isShowingFilter = false
 	@State private var isShowingSorter = false
 	@State private var priceFilter = PriceFilter.none
+	@State private var sizeFilter = SizeFilter.none
 	@State private var sortBy = SortType.none
 	
 	let resorts: [Resort] = Bundle.main.decode("resorts.json")
