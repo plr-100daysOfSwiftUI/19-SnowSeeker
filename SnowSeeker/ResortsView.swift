@@ -29,7 +29,7 @@ struct ResortsView: View {
 	@State private var sortBy = SortType.none
 	
 	let resorts: [Resort] = Bundle.main.decode("resorts.json")
-	let filter: FilterType
+	let filterType: FilterType
 	
 	var filteredResorts: [Resort] {
 		switch filterBy {
@@ -138,6 +138,6 @@ struct ResortsView: View {
 
 struct ResortsView_Previews: PreviewProvider {
 	static var previews: some View {
-		ResortsView(filter: .none)
+		ResortsView(filterType: .none)
 	}
 }

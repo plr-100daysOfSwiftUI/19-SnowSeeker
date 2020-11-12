@@ -12,13 +12,13 @@ struct ContentView: View {
 	var body: some View {
 		
 		TabView {
-			ResortsView(filter: .none)
+			ResortsView(filterType: .none)
 				.tabItem {
 					Image(systemName: "lasso")
 					Text("All")
 				}
 			
-			ResortsView(filter: .price)
+			ResortsView(filterType: .price)
 				.tabItem {
 					Image.init(systemName: "dollarsign.circle")
 					Text("$$$")
