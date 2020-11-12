@@ -104,44 +104,36 @@ struct ResortsView: View {
 				}
 			}
 			.navigationBarTitle("Resorts")
-			.navigationBarItems(leading: Button(action: {
-				self.isShowingFilter = true
-			}) {
-				Image(systemName: "pin")
-				Text("Filter")
-			},
-			trailing: Button(action: {
-				self.isShowingSorter = true
-			}) {
-				Image(systemName: "arrow.up.arrow.down")
-				Text("Sort")
-			})
-			//			.actionSheet(isPresented: $isShowingSorter) {
-			//				ActionSheet(title: Text("Sort resorts by:"), buttons: [
-			//					.default(Text("Name")) {
-			//						self.sortBy = .name
-			//					},
-			//					.default(Text("Country")) {
-			//						self.sortBy = .country
-			//					},
-			//					.cancel()
-			//				])
-			//			}
-			.actionSheet(isPresented: $isShowingFilter) {
-				ActionSheet(title: Text("Filter resorts by price:"), buttons: [
-					.default(Text("Low")) {
-						self.filterBy = .low
-					},
-					.default(Text("Medium")) {
-						self.filterBy = .medium
-					},
-					.default(Text("High")) {
-						self.filterBy = .high
-					},
-					.cancel()
-				])
-			}
-			
+			.navigationBarItems(
+				leading: Button(action: {
+					self.isShowingFilter = true
+				}) {
+					Image(systemName: "pin")
+					Text("Filter")
+				}
+				.actionSheet(isPresented: $isShowingFilter) {
+					switch filterType {
+					default: return priceFilterAction
+					}
+				},
+				
+				trailing: Button(action: {
+					self.isShowingSorter = true
+				}) {
+					Image(systemName: "arrow.up.arrow.down")
+					Text("Sort")
+				}
+				.actionSheet(isPresented: $isShowingSorter) {
+					ActionSheet(title: Text("Sort resorts by:"), buttons: [
+						.default(Text("Name")) {
+							self.sortBy = .name
+						},
+						.default(Text("Country")) {
+							self.sortBy = .country
+						},
+						.cancel()
+					])
+				})
 			
 			WelcomeView()
 		}
