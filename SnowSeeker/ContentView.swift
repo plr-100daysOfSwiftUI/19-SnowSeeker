@@ -23,6 +23,13 @@ struct ContentView: View {
 					Image.init(systemName: "dollarsign.circle")
 					Text("$$$")
 				}
+			
+			ResortsView(filterType: .size)
+				.tabItem {
+					Image.init(systemName: "slider.horizontal.below.rectangle")
+					Text("Size")
+				}
+
 		}
 		
 	}
