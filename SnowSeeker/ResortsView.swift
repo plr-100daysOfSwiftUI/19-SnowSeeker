@@ -47,11 +47,11 @@ struct ResortsView: View {
 	var sortedResorts: [Resort] {
 		switch sortBy {
 		case .none:
-			return resorts
+			return filteredResorts
 		case .name:
-			return resorts.sorted() { $0.name < $1.name }
+			return filteredResorts.sorted() { $0.name < $1.name }
 		case .country:
-			return resorts.sorted() { $0.country < $1.country }
+			return filteredResorts.sorted() { $0.country < $1.country }
 		}
 	}
 	
