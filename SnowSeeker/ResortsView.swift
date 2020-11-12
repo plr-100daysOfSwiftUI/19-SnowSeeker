@@ -31,6 +31,19 @@ struct ResortsView: View {
 	let resorts: [Resort] = Bundle.main.decode("resorts.json")
 	let filter: FilterType
 	
+	var filteredResorts: [Resort] {
+		switch filterBy {
+		case .none:
+			return resorts
+		case .low:
+			return resorts.filter { $0.price == 1 }
+		case .medium:
+			return resorts.filter { $0.price == 2 }
+		case .high:
+			return resorts.filter { $0.price == 3 }
+		}
+	}
+	
 	var sortedResorts: [Resort] {
 		switch sortBy {
 		case .none:
