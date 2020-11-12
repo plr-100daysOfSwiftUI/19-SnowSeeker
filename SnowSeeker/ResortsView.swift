@@ -115,6 +115,26 @@ struct ResortsView: View {
 		])
 	}
 	
+	var countryFilterAction: ActionSheet {
+		return ActionSheet(title: Text("Filter resorts by country:"), buttons: [
+			.default(Text("Austria")) {
+				self.countryFilter = .austria
+			},
+			.default(Text("Canada")) {
+				self.countryFilter = .canada
+			},
+			.default(Text("France")) {
+				self.countryFilter = .france
+			},
+			.default(Text("Italy")) {
+				self.countryFilter = .italy
+			},
+			.default(Text("United States")) {
+				self.countryFilter = .unitedStates
+			},
+		])
+	}
+	
 	var body: some View {
 		NavigationView {
 			List(sortedResorts) { resort in
@@ -167,7 +187,7 @@ struct ResortsView: View {
 					case .size:
 						return sizeFilterAction
 					case .country:
-						return sizeFilterAction // country
+						return countryFilterAction
 					}
 				},
 				
