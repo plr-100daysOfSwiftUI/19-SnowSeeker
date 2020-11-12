@@ -106,7 +106,9 @@ struct ResortsView: View {
 			.navigationBarTitle("Resorts")
 			.navigationBarItems(
 				leading: Button(action: {
-					self.isShowingFilter = true
+					if filterType != .none {
+						self.isShowingFilter = true
+					}
 				}) {
 					Image(systemName: "pin")
 					Text("Filter")
