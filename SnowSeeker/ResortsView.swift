@@ -55,6 +55,21 @@ struct ResortsView: View {
 		}
 	}
 	
+	var priceFilterAction: ActionSheet {
+		return ActionSheet(title: Text("Filter resorts by price:"), buttons: [
+			.default(Text("Low")) {
+				self.filterBy = .low
+			},
+			.default(Text("Medium")) {
+				self.filterBy = .medium
+			},
+			.default(Text("High")) {
+				self.filterBy = .high
+			},
+			.cancel()
+		])
+	}
+	
 	var body: some View {
 		NavigationView {
 			List(sortedResorts) { resort in
