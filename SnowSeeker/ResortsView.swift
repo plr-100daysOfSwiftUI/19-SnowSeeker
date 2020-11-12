@@ -25,14 +25,14 @@ struct ResortsView: View {
 	@ObservedObject var favorites = Favorites()
 	@State private var isShowingFilter = false
 	@State private var isShowingSorter = false
-	@State private var filterBy = PriceFilter.none
+	@State private var priceFilter = PriceFilter.none
 	@State private var sortBy = SortType.none
 	
 	let resorts: [Resort] = Bundle.main.decode("resorts.json")
 	let filterType: FilterType
 	
 	var filteredResorts: [Resort] {
-		switch filterBy {
+		switch priceFilter {
 		case .none:
 			return resorts
 		case .low:
@@ -58,13 +58,13 @@ struct ResortsView: View {
 	var priceFilterAction: ActionSheet {
 		return ActionSheet(title: Text("Filter resorts by price:"), buttons: [
 			.default(Text("Low")) {
-				self.filterBy = .low
+				self.priceFilter = .low
 			},
 			.default(Text("Medium")) {
-				self.filterBy = .medium
+				self.priceFilter = .medium
 			},
 			.default(Text("High")) {
-				self.filterBy = .high
+				self.priceFilter = .high
 			},
 			.cancel()
 		])
