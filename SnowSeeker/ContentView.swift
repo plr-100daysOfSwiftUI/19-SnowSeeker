@@ -30,6 +30,12 @@ struct ContentView: View {
 					Text("Size")
 				}
 
+			ResortsView(filterType: .country)
+				.tabItem {
+					Image.init(systemName: "map")
+					Text("Country")
+				}
+
 		}
 		
 	}
