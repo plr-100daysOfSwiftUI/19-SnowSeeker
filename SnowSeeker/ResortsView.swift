@@ -37,16 +37,31 @@ struct ResortsView: View {
 	let filterType: FilterType
 	
 	var filteredResorts: [Resort] {
-		switch priceFilter {
-		case .none:
-			return resorts
-		case .low:
-			return resorts.filter { $0.price == 1 }
-		case .medium:
-			return resorts.filter { $0.price == 2 }
-		case .high:
-			return resorts.filter { $0.price == 3 }
+		if filterType == .price {
+			switch priceFilter {
+			case .none:
+				return resorts
+			case .low:
+				return resorts.filter { $0.price == 1 }
+			case .medium:
+				return resorts.filter { $0.price == 2 }
+			case .high:
+				return resorts.filter { $0.price == 3 }
+			}
+		} else if  filterType == .size{
+			switch sizeFilter {
+			case .none:
+				return resorts
+			case .small:
+				return resorts.filter { $0.size == 1 }
+			case .average:
+				return resorts.filter { $0.size == 2 }
+			case .large:
+				return resorts.filter { $0.size == 3 }
+			}
+			
 		}
+		return resorts
 	}
 	
 	var sortedResorts: [Resort] {
@@ -70,6 +85,21 @@ struct ResortsView: View {
 			},
 			.default(Text("High")) {
 				self.priceFilter = .high
+			},
+			.cancel()
+		])
+	}
+	
+	var sizeFilterAction: ActionSheet {
+		return ActionSheet(title: Text("Filter resorts by size:"), buttons: [
+			.default(Text("Small")) {
+				self.sizeFilter = .small
+			},
+			.default(Text("Average")) {
+				self.sizeFilter = .average
+			},
+			.default(Text("Large")) {
+				self.sizeFilter = .large
 			},
 			.cancel()
 		])
@@ -120,7 +150,14 @@ struct ResortsView: View {
 				}
 				.actionSheet(isPresented: $isShowingFilter) {
 					switch filterType {
-					default: return priceFilterAction
+					case .none:
+						return priceFilterAction // none
+					case .price:
+						return priceFilterAction
+					case .size:
+						return sizeFilterAction
+					case .country:
+						return sizeFilterAction // country
 					}
 				},
 				
