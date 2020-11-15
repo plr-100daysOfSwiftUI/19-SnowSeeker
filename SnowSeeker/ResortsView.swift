@@ -223,9 +223,8 @@ struct ResortsView: View {
 			}
 			.navigationBarTitle("Resorts")
 			.navigationBarItems(
-				leading:
-					leadingButton,
-					trailing: Button(action: {
+				leading: filterType == .none ? AnyView(EmptyView()) : AnyView(leadingButton),
+				trailing: Button(action: {
 					self.isShowingSorter = true
 				}) {
 					Image(systemName: "arrow.up.arrow.down")
