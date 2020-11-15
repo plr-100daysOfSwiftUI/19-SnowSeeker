@@ -7,30 +7,36 @@
 
 import SwiftUI
 
+enum SortType {
+	case none, name, country
+}
+
 struct ContentView: View {
+	
+	@State private var sortBy = SortType.none
 	
 	var body: some View {
 		
 		TabView {
-			ResortsView(filterType: .none)
+			ResortsView(sortBy: $sortBy, filterType: .none)
 				.tabItem {
 					Image(systemName: "lasso")
 					Text("All")
 				}
 			
-			ResortsView(filterType: .price)
+			ResortsView(sortBy: $sortBy, filterType: .price)
 				.tabItem {
 					Image.init(systemName: "dollarsign.circle")
 					Text("$$$")
 				}
 			
-			ResortsView(filterType: .size)
+			ResortsView(sortBy: $sortBy, filterType: .size)
 				.tabItem {
 					Image.init(systemName: "slider.horizontal.below.rectangle")
 					Text("Size")
 				}
 
-			ResortsView(filterType: .country)
+			ResortsView(sortBy: $sortBy, filterType: .country)
 				.tabItem {
 					Image.init(systemName: "map")
 					Text("Country")

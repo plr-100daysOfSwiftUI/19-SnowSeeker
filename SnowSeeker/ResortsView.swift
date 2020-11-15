@@ -8,10 +8,6 @@
 
 import SwiftUI
 
-enum SortType {
-	case none, name, country
-}
-
 enum FilterType {
 	case none, price, size, country
 }
@@ -40,8 +36,7 @@ struct ResortsView: View {
 	@State private var priceFilter = PriceFilter.none
 	@State private var sizeFilter = SizeFilter.none
 	@State private var countryFilter = CountryFilter.none
-	// TODO: move sortBy to the environment so that the sort order is shared by all filters
-	@State private var sortBy = SortType.none
+	@Binding var sortBy: SortType
 	
 	let resorts: [Resort] = Bundle.main.decode("resorts.json")
 	let filterType: FilterType
@@ -253,6 +248,6 @@ struct ResortsView: View {
 
 struct ResortsView_Previews: PreviewProvider {
 	static var previews: some View {
-		ResortsView(filterType: .none)
+		ResortsView(sortBy: .constant(.none), filterType: .none)
 	}
 }
