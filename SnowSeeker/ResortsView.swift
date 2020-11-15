@@ -8,10 +8,6 @@
 
 import SwiftUI
 
-enum FilterType {
-	case none, price, size, country
-}
-
 enum PriceFilter {
 	case none, low, medium, high
 }

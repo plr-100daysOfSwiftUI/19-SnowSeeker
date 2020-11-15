@@ -11,6 +11,10 @@ enum SortType {
 	case none, name, country
 }
 
+enum FilterType {
+	case none, price, size, country
+}
+
 struct ContentView: View {
 	
 	@State private var sortBy = SortType.none
