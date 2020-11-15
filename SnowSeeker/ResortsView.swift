@@ -104,12 +104,12 @@ struct ResortsView: View {
 		}
 	}
 	
-	func filterSheetTitle(_ title: String) -> Text {
-		return Text("Filter resorts by \(title):")
+	func filterActionSheetTitle(_ filter: FilterType) -> Text {
+		return Text("Filter resorts by \(filter.rawValue):")
 	}
 	
 	var priceFilterAction: ActionSheet {
-		return ActionSheet(title: filterSheetTitle("price"), buttons: [
+		return ActionSheet(title: filterActionSheetTitle(.price), buttons: [
 			.default(Text("Low")) {
 				self.priceFilter = .low
 			},
@@ -124,7 +124,7 @@ struct ResortsView: View {
 	}
 	
 	var sizeFilterAction: ActionSheet {
-		return ActionSheet(title: filterSheetTitle("size"), buttons: [
+		return ActionSheet(title: filterActionSheetTitle(.size), buttons: [
 			.default(Text("Small")) {
 				self.sizeFilter = .small
 			},
@@ -139,7 +139,7 @@ struct ResortsView: View {
 	}
 	
 	var countryFilterAction: ActionSheet {
-		return ActionSheet(title: filterSheetTitle("country"), buttons: [
+		return ActionSheet(title: filterActionSheetTitle(.country), buttons: [
 			.default(Text("Austria")) {
 				self.countryFilter = .austria
 			},

@@ -11,7 +11,7 @@ enum SortType {
 	case none, name, country
 }
 
-enum FilterType {
+enum FilterType: String {
 	case none, price, size, country
 }
 
