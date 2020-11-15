@@ -159,6 +159,7 @@ struct ResortsView: View {
 			.default(Text("United States")) {
 				self.countryFilter = .unitedStates
 			},
+			.cancel()
 		])
 	}
 	
