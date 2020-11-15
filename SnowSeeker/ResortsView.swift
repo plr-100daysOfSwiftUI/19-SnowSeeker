@@ -167,6 +167,27 @@ struct ResortsView: View {
 		])
 	}
 	
+	var leadingButton: some View {
+		Button(action: {
+			self.isShowingFilter = true
+		}) {
+			Image(systemName: "pin")
+			Text("Filter")
+		}
+		.actionSheet(isPresented: $isShowingFilter) {
+			switch filterType {
+			case .none:
+				return priceFilterAction // none
+			case .price:
+				return priceFilterAction
+			case .size:
+				return sizeFilterAction
+			case .country:
+				return countryFilterAction
+			}
+		}
+	}
+	
 	var body: some View {
 		NavigationView {
 			List(sortedResorts) { resort in
@@ -202,28 +223,9 @@ struct ResortsView: View {
 			}
 			.navigationBarTitle("Resorts")
 			.navigationBarItems(
-				leading: Button(action: {
-					if filterType != .none {
-						self.isShowingFilter = true
-					}
-				}) {
-					Image(systemName: "pin")
-					Text("Filter")
-				}
-				.actionSheet(isPresented: $isShowingFilter) {
-					switch filterType {
-					case .none:
-						return priceFilterAction // none
-					case .price:
-						return priceFilterAction
-					case .size:
-						return sizeFilterAction
-					case .country:
-						return countryFilterAction
-					}
-				},
-				
-				trailing: Button(action: {
+				leading:
+					leadingButton,
+					trailing: Button(action: {
 					self.isShowingSorter = true
 				}) {
 					Image(systemName: "arrow.up.arrow.down")
