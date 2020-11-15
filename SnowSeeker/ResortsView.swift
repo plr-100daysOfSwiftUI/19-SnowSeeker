@@ -40,6 +40,7 @@ struct ResortsView: View {
 	@State private var priceFilter = PriceFilter.none
 	@State private var sizeFilter = SizeFilter.none
 	@State private var countryFilter = CountryFilter.none
+	// TODO: move sortBy to the environment so that the sort order is shared by all filters
 	@State private var sortBy = SortType.none
 	
 	let resorts: [Resort] = Bundle.main.decode("resorts.json")
